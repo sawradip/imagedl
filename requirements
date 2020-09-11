@@ -1,0 +1,56 @@
+astroid @ file:///C:/ci/astroid_1592487315634/work
+backcall==0.2.0
+beautifulsoup4==4.9.1
+brotlipy==0.7.0
+certifi==2020.6.20
+cffi @ file:///C:/ci/cffi_1598352710791/work
+chardet==3.0.4
+colorama==0.4.3
+configparser==5.0.0
+crayons==0.4.0
+cryptography @ file:///C:/ci/cryptography_1598353391057/work
+decorator==4.4.2
+hurry.filesize==0.9
+idna @ file:///tmp/build/80754af9/idna_1593446292537/work
+ipykernel @ file:///C:/ci/ipykernel_1596190155316/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///C:/ci/ipython_1598865816163/work
+ipython-genutils==0.2.0
+isort==4.3.21
+jedi @ file:///C:/ci/jedi_1598353661586/work
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1594826976318/work
+jupyter-core==4.6.3
+lazy-object-proxy==1.4.3
+mccabe==0.6.1
+mkl-fft==1.1.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+numpy @ file:///C:/ci/numpy_and_numpy_base_1596215850360/work
+pandas @ file:///C:/ci/pandas_1598371563714/work
+parso==0.7.0
+pickleshare==0.7.5
+Pillow==7.2.0
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1598885458782/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+Pygments==2.6.1
+pylint @ file:///C:/ci/pylint_1592482039483/work
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1594392929924/work
+PySocks==1.7.1
+python-dateutil==2.8.1
+python3-wget==0.0.2b1
+pytz==2020.1
+pywin32==227
+pyzmq==19.0.1
+requests @ file:///tmp/build/80754af9/requests_1592841827918/work
+selenium==3.141.0
+six==1.15.0
+soupsieve==2.0.1
+toml @ file:///tmp/build/80754af9/toml_1592853716807/work
+tornado==6.0.4
+tqdm @ file:///tmp/build/80754af9/tqdm_1596810128862/work
+traitlets==4.3.3
+urllib3 @ file:///tmp/build/80754af9/urllib3_1597086586889/work
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
+webdriver-manager==3.2.2
+win-inet-pton==1.1.0
+wincertstore==0.2
+wrapt==1.11.2
