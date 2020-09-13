@@ -1,6 +1,7 @@
 #vpn have to be implemented
 #we have to use wait, not time sleep, for getting element
 import os
+import sys
 import time
 import selenium
 import numpy as np
@@ -30,6 +31,13 @@ class GoogleImage:
         self.option.add_argument("--proxy-bypass-list=*")
         self.option.add_argument('--ignore-certificate-errors')
         self.option.add_argument('--ignore-ssl-errors')
+
+        self.in_colab = 'google.colab' in sys.modules
+        if self.in_colab:
+            sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')
+            self.option.add_argument('--headless')
+            self.option.add_argument('--no-sandbox')
+            self.option.add_argument('--disable-dev-shm-usage')
 
 
 
@@ -114,7 +122,10 @@ class GoogleImage:
             os.mkdir(self.save_folder)
 
         self.search_url = self.url_first_part + self.search_text.replace(' ' , '+')
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options = self.option )
+        if self.in_colab:
+            self.driver = webdriver.Chrome('chromedriver', options = self.option )
+        else:
+            self.driver = webdriver.Chrome(ChromeDriverManager().install(), options = self.option )
         self.driver.get(self.search_url)
 
         self.get_image_details()

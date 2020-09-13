@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import time
 import selenium
 import argparse
@@ -23,6 +24,7 @@ from googleimage import GoogleImage
 
 
 
+
 class GoogleReverseImage(GoogleImage):
     def __init__(self, headless = False, to_csv = False, show_links = False):
 
@@ -37,6 +39,13 @@ class GoogleReverseImage(GoogleImage):
         self.option.add_argument("--proxy-bypass-list=*")
         self.option.add_argument('--ignore-certificate-errors')
         self.option.add_argument('--ignore-ssl-errors')
+
+        self.in_colab = 'google.colab' in sys.modules
+        if self.in_colab:
+            sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')
+            self.option.add_argument('--headless')
+            self.option.add_argument('--no-sandbox')
+            self.option.add_argument('--disable-dev-shm-usage')
 
     def get_thumbnail_images(self):
         count = 0
@@ -97,8 +106,10 @@ class GoogleReverseImage(GoogleImage):
         multipart = {'encoded_image': (self.search_image, open(self.search_image, 'rb')), 'image_content': ''}
         first_response = requests.post(self.url_first_part, files=multipart, allow_redirects=False)
         self.search_url = first_response.headers['Location']
-
-        self.driver = webdriver.Chrome(ChromeDriverManager().install(), options = self.option )
+        if self.in_colab:
+            self.driver = webdriver.Chrome('chromedriver', options = self.option )
+        else:
+            self.driver = webdriver.Chrome(ChromeDriverManager().install(), options = self.option )
         self.driver.get(self.search_url)
         time.sleep(1)
 
