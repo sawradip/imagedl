@@ -3,6 +3,9 @@ import wget
 import requests
 from urllib import request
 from tqdm import tqdm
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 def save_base64(url, save_path):
 
@@ -27,7 +30,7 @@ def save_img_progress_bar(url, save_path):
         progress_bar.close()
 
 def save_img_without_progress_bar(url, save_path):
-        response = requests.get(url, stream=True)
+        response = requests.get(url, verify=False, stream=True)
         with open(save_path, 'wb') as file:
             file.write(response.content)
 

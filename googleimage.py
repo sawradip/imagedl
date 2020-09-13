@@ -56,9 +56,9 @@ class GoogleImage:
         self.all_image_data = []
         i = 0
         if len(imgs) < self.n_images:
-            progress_bar = tqdm(total = len(imgs))
-        else:
-            progress_bar = tqdm(total = self.n_images)
+            self.n_images = len(imgs)
+        
+        progress_bar = tqdm(total = self.n_images)
 
         imgs = iter(imgs)
         while i < self.n_images:
@@ -69,11 +69,11 @@ class GoogleImage:
                 actions.key_down(Keys.CONTROL).click(img).send_keys(Keys.TAB ).key_up(Keys.CONTROL).perform()
 
                 handles = self.driver.window_handles
-                #time.sleep(0.5)
-                if len(handles) == 1:
-                    print("Facing some problems.Trying to recover.")
-                    actions.key_down(Keys.CONTROL).click(img).key_up(Keys.CONTROL).perform()
-                self.driver.switch_to.window(handles[1])
+                try:
+                    self.driver.switch_to.window(handles[1])
+                except IndexError:
+                    print("[Warning] Skipping an image due to problems.")
+                    continue
                 image = self.driver.find_element_by_tag_name('img')
             except (selenium.common.exceptions.NoSuchElementException, selenium.common.exceptions.StaleElementReferenceException):
                 self.driver.close()
@@ -90,13 +90,13 @@ class GoogleImage:
                 save_base64(single_image_data[0], save_path)
             except:
                 save_img_without_progress_bar(single_image_data[0], save_path)
-            finally:
-                if  os.path.exists(save_path) and check_img_type(save_path):
-                    if self.show_links:
-                        print(single_image_data[0])
-                    single_image_data[0] = image_name
-                else:
-                    continue
+
+            if  os.path.exists(save_path) and check_img_type(save_path):
+                if self.show_links:
+                    print(single_image_data[0])
+                single_image_data[0] = image_name
+            else:
+                continue
             
             self.all_image_data.append(single_image_data)
             self.driver.close()
@@ -128,7 +128,7 @@ class GoogleImage:
 
 
 #gi = GoogleImage(headless = False, to_csv= True, show_links= False)
-#gi.download(search_text = "guava", n_images = 8 , save_folder = "guava")
+#gi.download(search_text = "umbrella", n_images = 8 , save_folder = "guava")
             
 
 
