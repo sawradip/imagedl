@@ -1,3 +1,5 @@
+# Imagadl - Image Scrapper from search Engine
+
 This small project is for downloading google tons of google images, with a few clicks.
 Speciality of this project is, you can search google with both
 1. Text
